@@ -15,7 +15,7 @@ VOLUME ["/etc/nginx/sites-enabled", "/etc/nginx/certs", "/var/log/nginx"]
 # expose ports
 EXPOSE 80 443
 # add nginx conf
-ADD config/default.conf /etc/nginx/conf.d/
+ADD config/default.conf /etc/nginx/conf.d/default.conf
 RUN systemctl restart nginx
 WORKDIR /etc/nginx
 CMD ["nginx"]
