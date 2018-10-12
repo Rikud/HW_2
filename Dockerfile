@@ -6,11 +6,10 @@ MAINTAINER Ivan Nemshilov
 RUN apt-get -y update
 
 # install nginx
-RUN apt-get install -y python-software-properties
-RUN apt-get install -y software-properties-common
-RUN add-apt-repository -y ppa:nginx/stable
-RUN apt-get update -y
-RUN apt-get install -y nginx
+RUN apt-get update \
+    && apt-get install -y nginx \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists
 # deamon mode off
 RUN echo "\ndaemon off;" >> /etc/nginx/nginx.conf
 RUN chown -R www-data:www-data /var/lib/nginx
