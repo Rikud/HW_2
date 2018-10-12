@@ -10,7 +10,7 @@ RUN rm -v /etc/nginx/nginx.conf
 # Copy a configuration file from the current directory
 ADD nginx.conf /etc/nginx/
 # add nginx conf
-ADD config/nginx.conf /etc/nginx/conf.d/default.conf
+ADD config/default.conf /etc/nginx/conf.d/default.conf
 # Append "daemon off;" to the beginning of the configuration
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 # Expose ports
