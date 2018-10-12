@@ -2,9 +2,6 @@ FROM ubuntu:16.04
 
 MAINTAINER Ivan Nemshilov
 
-# Обвновление списка пакетов
-RUN apt-get -y update
-
 # install nginx
 RUN apt-get update \
     && apt-get install -y nginx \
