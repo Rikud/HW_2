@@ -17,4 +17,4 @@ RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 EXPOSE 80
 # Set the default command to execute
 # when creating a new container
-CMD service nginx start
+CMD service nginx restart
