@@ -3,19 +3,16 @@ FROM ubuntu:16.04
 MAINTAINER Ivan Nemshilov
 
 # install nginx
-RUN apt-get update \
-    && apt-get install -y nginx \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists
-# deamon mode off
-RUN echo "\ndaemon off;" >> /etc/nginx/nginx.conf
-RUN chown -R www-data:www-data /var/lib/nginx
-# volume
-VOLUME ["/etc/nginx/sites-enabled", "/etc/nginx/certs", "/var/log/nginx"]
-# expose ports
-EXPOSE 80 443
-# add nginx conf
-ADD config/default.conf /etc/nginx/conf.d/default.conf
-RUN service nginx restart
-WORKDIR /etc/nginx
-CMD ["nginx"]
+RUN apt-get update
+RUN apt-get install -y nginx
+# Remove the default Nginx configuration file
+RUN rm -v /etc/nginx/nginx.conf
+# Copy a configuration file from the current directory
+ADD config/nginx.conf /etc/nginx/
+# Append "daemon off;" to the beginning of the configuration
+RUN echo "daemon off;" >> /etc/nginx/nginx.conf
+# Expose ports
+EXPOSE 80
+# Set the default command to execute
+# when creating a new container
+CMD service nginx start
